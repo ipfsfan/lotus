@@ -8,7 +8,6 @@
 package build
 
 import (
-	"math"
 	"os"
 
 	"github.com/filecoin-project/go-address"
@@ -25,42 +24,27 @@ var DrandSchedule = map[abi.ChainEpoch]DrandEnum{
 const BootstrappersFile = "mainnet.pi"
 const GenesisFile = "mainnet.car"
 
-const UpgradeBreezeHeight = 4 // 41280
+const UpgradeBreezeHeight = -1
+const BreezeGasTampingDuration = 0
 
-const BreezeGasTampingDuration = 120
+const UpgradeSmokeHeight = -1
+const UpgradeIgnitionHeight = -2
+const UpgradeRefuelHeight = -3
+const UpgradeTapeHeight = -4
 
-const UpgradeSmokeHeight = 6 // 51000
+const UpgradeActorsV2Height = 10
+const UpgradeLiftoffHeight = -5
 
-const UpgradeIgnitionHeight = 8 // 94000
-const UpgradeRefuelHeight = 10  // 130800
+const UpgradeKumquatHeight = 15
+const UpgradeCalicoHeight = 20
+const UpgradePersianHeight = 25
+const UpgradeOrangeHeight = 27
+const UpgradeClausHeight = 30
 
-const UpgradeActorsV2Height = 12 // 138720
+const UpgradeActorsV3Height = 230
+const UpgradeNorwegianHeight = 400
+const UpgradeActorsV4Height = 650
 
-const UpgradeTapeHeight = 14 // 140760
-
-// This signals our tentative epoch for mainnet launch. Can make it later, but not earlier.
-// Miners, clients, developers, custodians all need time to prepare.
-// We still have upgrades and state changes to do, but can happen after signaling timing here.
-const UpgradeLiftoffHeight = 16 // 148888
-
-const UpgradeKumquatHeight = 18 // 170000
-
-const UpgradeCalicoHeight = 20  // 265200
-const UpgradePersianHeight = 22 // UpgradeCalicoHeight + (builtin2.EpochsInHour * 60)
-
-const UpgradeOrangeHeight = 24 // 336458
-
-// 2020-12-22T02:00:00Z
-const UpgradeClausHeight = 26 // 343200
-
-// 2021-03-04T00:00:30Z
-var UpgradeActorsV3Height = abi.ChainEpoch(28) //abi.ChainEpoch(550321)
-
-// 2021-04-12T22:00:00Z
-const UpgradeNorwegianHeight = 30 // 665280
-
-// 2021-04-29T06:00:00Z
-var UpgradeActorsV4Height = abi.ChainEpoch(32) // abi.ChainEpoch(712320)
 
 func init() {
 	policy.SetConsensusMinerMinPower(abi.NewStoragePower(1 << 30))
@@ -72,14 +56,6 @@ func init() {
 
 	if os.Getenv("LOTUS_USE_TEST_ADDRESSES") != "1" {
 		SetAddressNetwork(address.Mainnet)
-	}
-
-	if os.Getenv("LOTUS_DISABLE_V3_ACTOR_MIGRATION") == "1" {
-		UpgradeActorsV3Height = math.MaxInt64
-	}
-
-	if os.Getenv("LOTUS_DISABLE_V4_ACTOR_MIGRATION") == "1" {
-		UpgradeActorsV4Height = math.MaxInt64
 	}
 
 	Devnet = false
