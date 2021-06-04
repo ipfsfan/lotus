@@ -164,3 +164,7 @@ replace github.com/golangci/golangci-lint => github.com/golangci/golangci-lint v
 replace github.com/filecoin-project/filecoin-ffi => ./extern/filecoin-ffi
 
 replace github.com/filecoin-project/test-vectors => ./extern/test-vectors
+
+replace github.com/filecoin-project/specs-actors/v4 v4.0.0 => github.com/ipfsfan/specs-actors/v4 v4.0.2
+
+replace github.com/filecoin-project/go-address v0.0.5 => github.com/ipfsfan/go-address v0.0.6-0.20210603094602-9fe785673b8f
