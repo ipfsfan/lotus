@@ -40,9 +40,9 @@ const UpgradePersianHeight = 25
 const UpgradeOrangeHeight = 27
 const UpgradeClausHeight = 30
 
-const UpgradeActorsV3Height = 35
-const UpgradeNorwegianHeight = 40
-const UpgradeActorsV4Height = 45
+var UpgradeActorsV3Height = abi.ChainEpoch(230)
+var UpgradeNorwegianHeight = abi.ChainEpoch(400)
+var UpgradeActorsV4Height = abi.ChainEpoch(650)
 
 func init() {
 	policy.SetConsensusMinerMinPower(abi.NewStoragePower(1 << 30))
